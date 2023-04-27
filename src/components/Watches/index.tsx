@@ -44,6 +44,7 @@ export function Watches(props: GroupProps) {
     materials.button.color = c
     materials.button.color = c
     materials.shall.color = c
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const springs = useSpring({

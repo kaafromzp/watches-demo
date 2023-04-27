@@ -2,7 +2,6 @@ import {  ContactShadows, Environment, PresentationControls } from '@react-three
 import { Canvas as FiberCanvas } from '@react-three/fiber'
 import { Watches } from '../Watches';
 import { NoToneMapping } from 'three';
-import useStore from '../../store';
 
 const Canvas = () => {
   return (
