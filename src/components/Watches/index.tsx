@@ -21,7 +21,7 @@ const glassMaterial = new MeshPhysicalMaterial({
 })
 
 function timeToAngle(arrow: 'hours' | 'minutes' | 'seconds', time: string) {
-  const numbers = time.split(':')
+  const numbers = time.split(':').map((s) => s.slice(0, 1))
   switch (arrow) {
     case 'seconds':
       return ((Number(numbers[2]) % 60) * Math.PI / 30)
@@ -44,7 +44,7 @@ export function Watches(props: GroupProps) {
     materials.button.color = c
     materials.button.color = c
     materials.shall.color = c
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const springs = useSpring({
