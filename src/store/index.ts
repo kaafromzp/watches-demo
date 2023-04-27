@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 
 type State = {
   // variant: number
@@ -16,8 +16,8 @@ const useStore = create<State>(set => ({
   // setVariant: (variant) => {
   //   set({ variant })
   // },
-  setMainColor: ( mainColor ) => {
-    set( { mainColor } );
+  setMainColor: (mainColor) => {
+    set({ mainColor });
   }
 }))
 
