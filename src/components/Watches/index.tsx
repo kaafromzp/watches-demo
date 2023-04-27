@@ -21,7 +21,7 @@ const glassMaterial = new MeshPhysicalMaterial({
 })
 
 function timeToAngle(arrow: 'hours' | 'minutes' | 'seconds', time: string) {
-  const numbers = time.split(':').map((s) => s.slice(0, 1))
+  const numbers = time.split(':').map((s) => s.slice(0, 2))
   switch (arrow) {
     case 'seconds':
       return ((Number(numbers[2]) % 60) * Math.PI / 30)
