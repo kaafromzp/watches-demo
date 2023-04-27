@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.circle {
+  border-radius: 50%; 
+  border: 1px solid white; 
+  background: blue; 
+}
+
+.ui {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center; 
+  z-index: 1;
+}
+
+.menu {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu > div {
+  margin: 8px;
+  width: 16px; 
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background: transparent; 
+}
+
+.menu > div.active {
+  background: white; 
+}
+
+:root{
+  --mainColor: #714DF3;
+  --mainColorRGB: rgb(89, 87, 232)
+}
