@@ -15,9 +15,9 @@ const Canvas = () => {
       }}
       style={{
         height: '100vh',
-        background: `radial-gradient(circle at bottom center, #909090 0%, #303030 80%)`,
+        background: `radial-gradient(circle at bottom center, #C0C0C0 0%, #303030 80%)`,
       }}
-      camera={{ position: [0, 0, 0.3] }}
+      camera={{ fov: 20, position: [0, 0, 1.0] }}
     >
       <Suspense fallback={<Loader />}>
         <ambientLight intensity={0.1} />
@@ -26,14 +26,14 @@ const Canvas = () => {
         <PresentationControls
           config={{ mass: 2, tension: 500 }}
           snap={{ mass: 3, tension: 1500 }}
-          rotation={[0, 0.25, 0]}
+          rotation={[0, -0.55, 0]}
           polar={[-Math.PI / 3, Math.PI / 3]}
           azimuth={[-Math.PI / 1.4, Math.PI / 2]}
         >
           <Watches position={[0, 0, 0]} />
         </PresentationControls>
         <ContactShadows position={[0, -0.15, 0]} opacity={0.75} scale={0.5} blur={4} far={4} />
-        <Environment preset="sunset" />
+        <Environment files="warehouse.hdr" />
       </Suspense>
     </FiberCanvas>
   )
