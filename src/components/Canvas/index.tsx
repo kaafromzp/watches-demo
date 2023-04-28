@@ -1,14 +1,16 @@
-import {  ContactShadows, Environment, PresentationControls } from '@react-three/drei';
+import { ContactShadows, Environment, PresentationControls } from '@react-three/drei';
 import { Canvas as FiberCanvas } from '@react-three/fiber'
 import { Watches } from '../Watches';
 import { NoToneMapping } from 'three';
+import { Suspense } from 'react';
+import Loader from '../Loader';
 
 const Canvas = () => {
   return (
     <FiberCanvas
-      gl={{ 
-        antialias: true, 
-        toneMapping: NoToneMapping, 
+      gl={{
+        antialias: true,
+        toneMapping: NoToneMapping,
         useLegacyLights: false
       }}
       style={{
@@ -17,20 +19,22 @@ const Canvas = () => {
       }}
       camera={{ position: [0, 0, 0.3] }}
     >
-      <ambientLight intensity={0.1} />
-      <directionalLight intensity={0.1} />
-      <spotLight intensity={0.1} position={[0, -1, 3]} angle={1} penumbra={1} shadow-mapSize={2048} castShadow />
-      <PresentationControls
-        config={{ mass: 2, tension: 500 }}
-        snap={{ mass: 3, tension: 1500 }}
-        rotation={[0, 0.25, 0]}
-        polar={[-Math.PI / 3, Math.PI / 3]}
-        azimuth={[-Math.PI / 1.4, Math.PI / 2]}
-      >
-        <Watches position={[0, 0, 0]} />
-      </PresentationControls>
-      <ContactShadows position={[0, -0.15, 0]} opacity={0.75} scale={0.5} blur={4} far={4} />
-      <Environment preset="sunset" />
+      <Suspense fallback={<Loader />}>
+        <ambientLight intensity={0.1} />
+        <directionalLight intensity={0.1} />
+        <spotLight intensity={0.1} position={[0, -1, 3]} angle={1} penumbra={1} shadow-mapSize={2048} castShadow />
+        <PresentationControls
+          config={{ mass: 2, tension: 500 }}
+          snap={{ mass: 3, tension: 1500 }}
+          rotation={[0, 0.25, 0]}
+          polar={[-Math.PI / 3, Math.PI / 3]}
+          azimuth={[-Math.PI / 1.4, Math.PI / 2]}
+        >
+          <Watches position={[0, 0, 0]} />
+        </PresentationControls>
+        <ContactShadows position={[0, -0.15, 0]} opacity={0.75} scale={0.5} blur={4} far={4} />
+        <Environment preset="sunset" />
+      </Suspense>
     </FiberCanvas>
   )
 }
