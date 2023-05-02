@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Instance, Instances, OrthographicCamera, RenderTexture, Text, useGLTF } from '@react-three/drei'
-import { GroupProps, useFrame } from '@react-three/fiber'
+import { GroupProps, useFrame, useThree } from '@react-three/fiber'
 import { BufferGeometry, Group, BufferAttribute, Color, MeshStandardMaterial, Texture, MeshPhysicalMaterial } from 'three'
 import useStore from '../../store';
 import { easings, useSpring, animated } from '@react-spring/three';
@@ -34,8 +34,12 @@ function timeToAngle(arrow: 'hours' | 'minutes' | 'seconds', time: string) {
 
 export function Watches(props: GroupProps) {
   const mainColor = useStore(state => state.mainColor)
-
+  const { gl: { domElement } } = useThree();
   useEffect(() => {
+    domElement.addEventListener('pointerdown',(e)=>{
+      e.preventDefault()
+    },false)
+
     const c = new Color(mainColor)
     colorMaterial.color = c
     materials.rear.map = null
