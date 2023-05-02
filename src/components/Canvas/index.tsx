@@ -27,7 +27,7 @@ const Canvas = () => {
         <PresentationControls
           config={{ mass: 2, tension: 500 }}
           snap={{ mass: 3, tension: 1500 }}
-          rotation={[0, -0.55, 0]}
+          rotation={[0, 0.45, 0]}
           polar={[-Math.PI / 3, Math.PI / 3]}
           azimuth={[-Math.PI / 1.4, Math.PI / 2]}
         >
