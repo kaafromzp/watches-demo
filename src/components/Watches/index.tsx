@@ -34,12 +34,8 @@ function timeToAngle(arrow: 'hours' | 'minutes' | 'seconds', time: string) {
 
 export function Watches(props: GroupProps) {
   const mainColor = useStore(state => state.mainColor)
-  const { gl: { domElement } } = useThree();
-  useEffect(() => {
-    domElement.addEventListener('pointerdown',(e)=>{
-      e.preventDefault()
-    },false)
 
+  useEffect(() => {
     const c = new Color(mainColor)
     colorMaterial.color = c
     materials.rear.map = null

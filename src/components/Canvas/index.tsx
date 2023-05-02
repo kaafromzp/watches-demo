@@ -14,6 +14,7 @@ const Canvas = () => {
         useLegacyLights: false
       }}
       style={{
+        touchAction: 'none',
         height: '100vh',
         background: `radial-gradient(circle at bottom center, #C0C0C0 0%, #303030 80%)`,
       }}
