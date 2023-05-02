@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  user-select: none;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
 }
 
 code {
@@ -13,9 +18,9 @@ code {
 }
 
 .circle {
-  border-radius: 50%; 
-  border: 1px solid white; 
-  background: blue; 
+  border-radius: 50%;
+  border: 1px solid white;
+  background: blue;
 }
 
 .ui {
@@ -23,7 +28,7 @@ code {
   width: 100%;
   bottom: 0;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   z-index: 1;
 }
 
@@ -33,20 +38,20 @@ code {
   justify-content: center;
 }
 
-.menu > div {
+.menu>div {
   margin: 8px;
-  width: 16px; 
+  width: 16px;
   height: 16px;
   border-radius: 50%;
   border: 1px solid white;
-  background: transparent; 
+  background: transparent;
 }
 
-.menu > div.active {
-  background: white; 
+.menu>div.active {
+  background: white;
 }
 
-:root{
+:root {
   --mainColor: #714DF3;
   --mainColorRGB: rgb(89, 87, 232)
 }
