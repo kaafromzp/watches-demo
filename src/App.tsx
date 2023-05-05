@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Canvas />
-      <UI/>
+      <UI />
     </>
   );
 }

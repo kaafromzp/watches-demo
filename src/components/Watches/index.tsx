@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Instance, Instances, OrthographicCamera, RenderTexture, Text, useGLTF } from '@react-three/drei'
+import { Instance, Instances, OrthographicCamera, Plane, RenderTexture, Text, useGLTF, useTexture } from '@react-three/drei'
 import { GroupProps, useFrame } from '@react-three/fiber'
 import { BufferGeometry, Group, BufferAttribute, Color, MeshStandardMaterial, Texture, MeshPhysicalMaterial } from 'three'
 import useStore from '../../store';
@@ -43,7 +43,8 @@ export function Watches(props: GroupProps) {
     materials.belt.color = c
     materials.button.color = c
     materials.button.color = c
-    materials.shall.color = c
+    materials.shall.roughness = 0.9
+    materials.shall.metalness = 1
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -58,7 +59,6 @@ export function Watches(props: GroupProps) {
       materials.belt.color = c
       materials.button.color = c
       materials.button.color = c
-      materials.shall.color = c
     }
   })
 
@@ -105,23 +105,23 @@ export function Watches(props: GroupProps) {
     return geometry
   }, [])
 
-  const geometry2 = useMemo(() => {
-    const geometry = new BufferGeometry();
-    const radius = 0.55;
-    const width = 0.007;
-    const vertices = new Float32Array([
-      -width * 0.5, radius, 0,
-      -width * 0.5, 0, 0,
-      width * 0.5, radius, 0,
-      width * 0.5, radius, 0,
-      -width * 0.5, 0, 0,
-      width * 0.5, 0, 0,
-    ]);
-    geometry.setAttribute('position', new BufferAttribute(vertices, 3));
-    geometry.computeVertexNormals()
+  // const geometry2 = useMemo(() => {
+  //   const geometry = new BufferGeometry();
+  //   const radius = 0.55;
+  //   const width = 0.007;
+  //   const vertices = new Float32Array([
+  //     -width * 0.5, radius, 0,
+  //     -width * 0.5, 0, 0,
+  //     width * 0.5, radius, 0,
+  //     width * 0.5, radius, 0,
+  //     -width * 0.5, 0, 0,
+  //     width * 0.5, 0, 0,
+  //   ]);
+  //   geometry.setAttribute('position', new BufferAttribute(vertices, 3));
+  //   geometry.computeVertexNormals()
 
-    return geometry
-  }, [])
+  //   return geometry
+  // }, [])
 
   const cretaeArrowGeometry = useCallback((width: number, length: number) => {
     const geometry = new BufferGeometry();
@@ -136,6 +136,11 @@ export function Watches(props: GroupProps) {
   }, [])
 
   const [t, setT] = useState(null as null | Texture)
+
+  const logo = useTexture('logo512.png', (t) => {
+    (t as Texture).flipY = false; 
+    (t as Texture).needsUpdate = true;
+  })
 
   return (
     <group
@@ -153,13 +158,16 @@ export function Watches(props: GroupProps) {
         <OrthographicCamera ref={cameraRef} near={1e-3} far={1e3} left={-1} right={1} top={310 / 256} bottom={-310 / 256} makeDefault manual position={[0, 0, 1]} />
         <pointLight intensity={2} position={[0, -1, 0.5]} />
         <ambientLight intensity={0.7} />
+        <Plane>
+          <meshStandardMaterial transparent map={logo} />
+        </Plane>
         <AnimatedText color={springs.color} fontSize={0.12} position-y={0.97} rotation-x={Math.PI}>
           {time}
         </AnimatedText>
         <AnimatedText color={springs.color} fontSize={0.12} position-y={1.1} rotation-x={Math.PI}>
           {timeZone}
         </AnimatedText>
-        <Instances
+        {/* <Instances
           range={instanceData.length}
           limit={instanceData.length}
           geometry={geometry2}
@@ -171,7 +179,7 @@ export function Watches(props: GroupProps) {
               rotation-z={data}
             />
           ))}
-        </Instances>
+        </Instances> */}
         <mesh
           material={greyMaterial}
         >
